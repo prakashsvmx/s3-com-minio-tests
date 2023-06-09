@@ -33,3 +33,11 @@ def get_new_bucket(client=None, name=None):
         client = get_minio_client()
     client.create_bucket(Bucket=name)
     return name
+
+
+def get_res_body(response):
+    body = response['Body']
+    got = body.read()
+    if type(got) is bytes:
+        got = got.decode()
+    return got
